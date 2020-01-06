@@ -23,3 +23,41 @@ match->next=new;
  
 
   }
+
+void *MyMalloc(size_t noOfBytes)
+{
+struct block *ptr,*prev;
+void *res;
+  
+  if(!(freeblock->size))
+  { 
+    initialize();
+  
+  }
+
+ptr= freeblock;
+
+  while(ptr->next!=NULL)
+  {
+ 
+
+    if(((ptr->size)==noOfBytes) || ((ptr->size)>(noOfBytes+sizeof(struct block))))
+    {
+      if ((ptr->size)>(noOfBytes+sizeof(struct block)))
+      {
+        split(ptr,noOfBytes);
+      }
+      ptr->free=0;
+      res=(void*)(++ptr);
+      printf("Memory allocated\n");
+      return res;
+    }
+
+    else
+    { 
+      printf(" No sufficient memory\n");
+      return 0;
+    }
+  }
+}
+
