@@ -79,3 +79,14 @@ if((ptr->free) && (ptr->next->free))
 }
  
  
+void MyFree(void* point)
+{
+if(((void*)memory<=point)&&(point<=(void*)(memory+25000)))
+{ 
+struct block* ptr=point;
+--ptr;
+ptr->free=1;
+combine();
+}
+}
+ 
