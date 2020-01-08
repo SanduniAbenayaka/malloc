@@ -61,3 +61,21 @@ ptr= freeblock;
   }
 }
 
+
+void combine()
+{
+struct block *ptr;
+ptr=freeblock;
+while((ptr->next)!=NULL)
+  {
+if((ptr->free) && (ptr->next->free))
+  {
+   ptr->size+=(ptr->next->size)+sizeof(struct block);
+   ptr->next=ptr->next->next;
+    }
+  
+  ptr=ptr->next;
+  }
+}
+ 
+ 
